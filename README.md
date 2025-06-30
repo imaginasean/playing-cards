@@ -17,11 +17,10 @@ This project generates a full deck of playing cards as images using Python and P
      ```sh
      pipx install uv
      ```
-3. **Set up the Python environment:**
+3. **Set up the Python environment and install dependencies:**
    ```sh
    uv venv
-   uv pip install -r requirements.txt  # or use `uv pip install pillow` if no requirements.txt
-   uv pip install pillow
+   uv install
    ```
 4. **Activate the virtual environment:**
    ```sh
@@ -54,10 +53,10 @@ This project generates a full deck of playing cards as images using Python and P
      ```sh
      pipx install uv
      ```
-3. **Set up the Python environment:**
+3. **Set up the Python environment and install dependencies:**
    ```sh
    uv venv
-   uv pip install pillow
+   uv install
    ```
 4. **Activate the virtual environment:**
    ```sh
