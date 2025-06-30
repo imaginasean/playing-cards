@@ -47,7 +47,7 @@ def create_card(value, suit, value_font_path, suit_font_path, watermark_path, ou
     # Add watermark
     if watermark_path:
         watermark = Image.open(watermark_path).convert("RGBA")
-        watermark = watermark.resize((100, 100))
+        # Do not resize the watermark; use its original size
         watermark.putalpha(int(255 * 0.6))  # 60% transparency
         # Center the watermark
         wm_x = (card_size[0] - watermark.width) // 2
@@ -78,7 +78,7 @@ def generate_all_cards():
                 suit=suit,
                 value_font_path="fonts/CalSans-Regular.ttf",
                 suit_font_path="fonts/DejaVuSans.ttf",
-                watermark_path="watermarks/kraken.png",
+                watermark_path="watermarks/harry.png",
                 output_path=output_path
             )
             
