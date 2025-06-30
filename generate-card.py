@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
 
-def create_card(value, suit, value_font_path, suit_font_path, watermark_path, output_path):
+def create_card(value, suit, value_font_path, suit_font_path, watermark_path, output_path, rounded_corners=False):
     # Create blank white card image
     card_size = (300, 450)
     card = Image.new("RGB", card_size, color="white")
@@ -54,6 +54,15 @@ def create_card(value, suit, value_font_path, suit_font_path, watermark_path, ou
         wm_y = (card_size[1] - watermark.height) // 2
         card.paste(watermark, (wm_x, wm_y), watermark)
 
+    # Apply rounded corners if requested
+    if rounded_corners:
+        radius = 40  # You can adjust the radius as needed
+        mask = Image.new('L', card_size, 0)
+        mask_draw = ImageDraw.Draw(mask)
+        mask_draw.rounded_rectangle([(0, 0), card_size], radius=radius, fill=255)
+        card = card.convert("RGBA")
+        card.putalpha(mask)
+
     # Save the result
     card.save(output_path)
 
@@ -78,8 +87,9 @@ def generate_all_cards():
                 suit=suit,
                 value_font_path="fonts/CalSans-Regular.ttf",
                 suit_font_path="fonts/DejaVuSans.ttf",
-                watermark_path="watermarks/harry.png",
-                output_path=output_path
+                watermark_path="watermarks/kraken.png",
+                output_path=output_path,
+                rounded_corners=True  # Set to True to enable rounded corners
             )
             
             print(f"Generated card {card_number}: {value}{suit} -> {output_path}")
